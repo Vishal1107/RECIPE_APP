@@ -1,8 +1,8 @@
 ## Currently this Project is Under Development.
 
-## JAVASCRIPT APP
+## Javascript App
 
-- This is Simple Reciepe App in Which we can find Recipe list.
+- This is Simple Recipe App in Which we can find Recipe list.
 - This app developed using modern javascript like babel, webpack, ES6 JS
 
 ## Available Scripts
