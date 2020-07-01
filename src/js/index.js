@@ -14,10 +14,10 @@ const controlSearch = async () => {
   var query = searchView.getInput();
   if (query) {
     state.search = new Search(query);
-    await state.search.getResult();
-    searchView.renderResult(state.search.result);
     searchView.clearInput();
     searchView.clearResult();
+    await state.search.getResult();
+    searchView.renderResult(state.search.result);
   } else {
     alert("Search field cannot be empty");
   }
