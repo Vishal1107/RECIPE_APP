@@ -1,4 +1,6 @@
 import Search from "./models/Search";
+import { elements } from "./views/base";
+import * as searchView from "./views/searchView";
 
 /**  Global Object
  * - Search Object
@@ -9,15 +11,19 @@ import Search from "./models/Search";
 const state = {};
 
 const controlSearch = async () => {
-  let query = "pizza";
+  var query = searchView.getInput();
   if (query) {
     state.search = new Search(query);
     await state.search.getResult();
-    console.log(state.search.result);
+    searchView.renderResult(state.search.result);
+    searchView.clearInput();
+    searchView.clearResult();
+  } else {
+    alert("Search field cannot be empty");
   }
 };
 
-document.getElementById("searchForm").addEventListener("submit", (e) => {
+elements.searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   controlSearch();
 });
