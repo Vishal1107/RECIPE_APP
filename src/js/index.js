@@ -10,6 +10,7 @@ import * as searchView from "./views/searchView";
  */
 const state = {};
 
+// ### Search Controller
 const controlSearch = async () => {
   var query = searchView.getInput();
   if (query) {
@@ -32,4 +33,14 @@ const controlSearch = async () => {
 elements.searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   controlSearch();
+});
+
+elements.paginationButtons.addEventListener("click", (e) => {
+  const btn = e.target.closest(".btn");
+  if (btn) {
+    let searchPage = parseInt(btn.dataset.goto);
+    searchView.clearResult();
+    searchView.clearButtons();
+    searchView.renderResult(state.search.result, searchPage);
+  }
 });

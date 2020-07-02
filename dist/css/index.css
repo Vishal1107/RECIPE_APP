@@ -48,3 +48,13 @@ a figure {
     transform: rotate(360deg);
   }
 }
+
+#paginationButtons .btn-primary {
+  display: flex;
+  float: right;
+}
+
+#paginationButtons .btn-seconadry {
+  display: flex;
+  float: left;
+}

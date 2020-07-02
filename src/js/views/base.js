@@ -3,6 +3,9 @@ export const elements = {
   searchInput: document.getElementById("search"),
   recipeResult: document.getElementById("recipeResults"),
   recipeResultLoader: document.getElementById("recipeResultList"),
+  paginationButtons: document.getElementById("paginationButtons"),
+  movePrev: document.getElementById("prevBtn"),
+  moveNext: document.getElementById("nextBtn"),
 };
 
 export const renderLoader = (parent) => {

@@ -10,6 +10,10 @@ export const clearResult = () => {
   elements.recipeResult.innerHTML = "";
 };
 
+export const clearButtons = () => {
+  elements.paginationButtons.innerHTML = "";
+};
+
 const limitRecipeResult = (title, limit = 15) => {
   const newTitle = [];
   if (title.length > limit) {
@@ -24,8 +28,36 @@ const limitRecipeResult = (title, limit = 15) => {
   return title;
 };
 
-export const renderResult = (recipe) => {
-  recipe.map((item) => {
+const createButton = (page, type) =>
+  `<button class='${
+    type === "prev" ? "btn btn-secondary mb-4" : "btn btn-primary mb-4"
+  }' data-goto = '${type === "prev" ? page - 1 : page + 1}' id='${
+    type === "prev" ? "prevBtn" : "nextBtn"
+  }'>Page ${type === "prev" ? page - 1 : page + 1}</button>`;
+
+// Pagination Buttons
+const renderButtons = (page, numResults, resPerPage) => {
+  const pages = Math.ceil(numResults / resPerPage);
+  let pageButton;
+  if (page === 1 && pages > 1) {
+    // Only One Button -> Next Button
+    pageButton = createButton(page, "next");
+  } else if (page < pages) {
+    // Both buttons Prev and Next
+    pageButton = `${createButton(page, "prev")}
+    ${createButton(page, "next")}`;
+  } else if (page === pages && pages > 1) {
+    // Only One Button -> Prev Button
+    pageButton = createButton(page, "prev");
+  }
+  elements.paginationButtons.insertAdjacentHTML("afterbegin", pageButton);
+};
+
+export const renderResult = (recipe, page = 1, resPerPage = 10) => {
+  const start = (page - 1) * resPerPage;
+  const end = page * resPerPage;
+
+  recipe.slice(start, end).map((item) => {
     const markup = `<a>
       <figure>
 <img src = "${
@@ -38,7 +70,10 @@ export const renderResult = (recipe) => {
       )}</h6>
       <p>${limitRecipeResult(item.publisher)}</p>
       </div>
-     </a>`;
+     </a>
+     <hr/>`;
     elements.recipeResult.insertAdjacentHTML("beforeend", markup);
   });
+
+  renderButtons(page, recipe.length, resPerPage);
 };
