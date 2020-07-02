@@ -1,5 +1,5 @@
 import Search from "./models/Search";
-import { elements } from "./views/base";
+import { elements, renderLoader, clearLoader } from "./views/base";
 import * as searchView from "./views/searchView";
 
 /**  Global Object
@@ -16,10 +16,16 @@ const controlSearch = async () => {
     state.search = new Search(query);
     searchView.clearInput();
     searchView.clearResult();
+    renderLoader(elements.recipeResultLoader);
     await state.search.getResult();
+    clearLoader();
     searchView.renderResult(state.search.result);
   } else {
-    alert("Search field cannot be empty");
+    Swal.fire({
+      icon: "warning",
+      title: "Required",
+      text: "Search Field cannot be Empty",
+    });
   }
 };
 

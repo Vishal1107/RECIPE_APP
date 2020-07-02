@@ -26,3 +26,25 @@ a figure {
   float: left;
   margin-right: 10px;
 }
+
+#loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid red; /* Blue */
+  border-radius: 50%;
+  width: 5.5rem;
+  height: 5.5rem;
+  justify-content: center;
+  margin: 5rem, auto;
+  margin-left: 70px;
+  text-align: center;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
