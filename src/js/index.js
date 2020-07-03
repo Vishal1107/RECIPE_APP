@@ -9,7 +9,7 @@ import Recipe from "./models/Recipe";
  * - Shopping List Object
  * - Like Recipe
  */
-const state = {};
+let state = {};
 
 // ------------------------> Search Controller
 const controlSearch = async () => {
@@ -19,10 +19,13 @@ const controlSearch = async () => {
     searchView.clearInput();
     searchView.clearResult();
     renderLoader(elements.recipeResultLoader);
-    await state.search.getResult();
-    clearLoader();
-    searchView.renderResult(state.search.result);
-    console.log(state.search.result);
+    try {
+      await state.search.getResult();
+      clearLoader();
+      searchView.renderResult(state.search.result);
+    } catch (eror) {
+      alert("Something Went Wrong");
+    }
   } else {
     Swal.fire({
       icon: "warning",
@@ -51,7 +54,22 @@ elements.paginationButtons.addEventListener("click", (e) => {
 
 //-------------------------------> Recipe Controller
 
-const controlRecipe = new Recipe(35628);
+const controlRecipe = async () => {
+  let id = window.location.hash.replace("#", "");
+  if (id) {
+    state.recipe = new Recipe(id);
 
-controlRecipe.getRecipe();
-console.log(controlRecipe);
+    try {
+      await state.recipe.getRecipe();
+      state.recipe.calcTime();
+      state.recipe.calcServings();
+      console.log(state.recipe);
+    } catch (error) {
+      alert("Error in Recipe Processing");
+    }
+  }
+};
+
+["hashchange, load"].forEach((event) =>
+  window.addEventListener(event, controlRecipe)
+);

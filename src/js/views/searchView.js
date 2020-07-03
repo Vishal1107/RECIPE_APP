@@ -65,7 +65,7 @@ export const renderResult = (recipe, page = 1, resPerPage = 10) => {
   const end = page * resPerPage;
 
   recipe.slice(start, end).map((item) => {
-    const markup = `<a href="${item.recipe_id}">
+    const markup = `<a href="#${item.recipe_id}">
       <figure>
 <img src = "${
       item.image_url
