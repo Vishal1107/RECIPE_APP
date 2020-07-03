@@ -27,9 +27,11 @@ a figure {
   margin-right: 10px;
 }
 
+/* ---------------------------> Loader CSS */
+
 #loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid red; /* Blue */
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid red;
   border-radius: 50%;
   width: 5.5rem;
   height: 5.5rem;
@@ -40,6 +42,7 @@ a figure {
   animation: spin 2s linear infinite;
 }
 
+/* ---------------------------> Loader Animation */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -49,12 +52,18 @@ a figure {
   }
 }
 
+/* ---------------------------> Next Button Pagination */
 #paginationButtons .btn-primary {
   display: flex;
   float: right;
 }
 
+/* ---------------------------> Previous Button Pagination */
 #paginationButtons .btn-seconadry {
   display: flex;
   float: left;
+}
+
+a {
+  text-decoration: none !important;
 }

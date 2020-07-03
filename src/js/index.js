@@ -1,6 +1,7 @@
 import Search from "./models/Search";
 import { elements, renderLoader, clearLoader } from "./views/base";
 import * as searchView from "./views/searchView";
+import Recipe from "./models/Recipe";
 
 /**  Global Object
  * - Search Object
@@ -10,7 +11,7 @@ import * as searchView from "./views/searchView";
  */
 const state = {};
 
-// ### Search Controller
+// ------------------------> Search Controller
 const controlSearch = async () => {
   var query = searchView.getInput();
   if (query) {
@@ -21,6 +22,7 @@ const controlSearch = async () => {
     await state.search.getResult();
     clearLoader();
     searchView.renderResult(state.search.result);
+    console.log(state.search.result);
   } else {
     Swal.fire({
       icon: "warning",
@@ -30,11 +32,13 @@ const controlSearch = async () => {
   }
 };
 
+//-------------------------> Event After Search Submit
 elements.searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   controlSearch();
 });
 
+//-------------------------> Event After Clicking Pagination Buttons
 elements.paginationButtons.addEventListener("click", (e) => {
   const btn = e.target.closest(".btn");
   if (btn) {
@@ -44,3 +48,10 @@ elements.paginationButtons.addEventListener("click", (e) => {
     searchView.renderResult(state.search.result, searchPage);
   }
 });
+
+//-------------------------------> Recipe Controller
+
+const controlRecipe = new Recipe(35628);
+
+controlRecipe.getRecipe();
+console.log(controlRecipe);

@@ -1,19 +1,24 @@
 import { elements } from "./base";
 
+// ---------------> To get Input from Search
 export const getInput = () => elements.searchInput.value;
 
+// ------------------> Clear Search Input
 export const clearInput = () => {
   elements.searchInput.value = "";
 };
 
+// ------------------- Clear Search Result
 export const clearResult = () => {
   elements.recipeResult.innerHTML = "";
 };
 
+// ------------------> Clear Pagination Buttons
 export const clearButtons = () => {
   elements.paginationButtons.innerHTML = "";
 };
 
+// ------------------> To Limit the Word of title and publsher to 15 Character
 const limitRecipeResult = (title, limit = 15) => {
   const newTitle = [];
   if (title.length > limit) {
@@ -28,6 +33,7 @@ const limitRecipeResult = (title, limit = 15) => {
   return title;
 };
 
+// ------------------> To Create Pagination Buttons
 const createButton = (page, type) =>
   `<button class='${
     type === "prev" ? "btn btn-secondary mb-4" : "btn btn-primary mb-4"
@@ -35,7 +41,7 @@ const createButton = (page, type) =>
     type === "prev" ? "prevBtn" : "nextBtn"
   }'>Page ${type === "prev" ? page - 1 : page + 1}</button>`;
 
-// Pagination Buttons
+// ------------------> Render Pagination Buttons
 const renderButtons = (page, numResults, resPerPage) => {
   const pages = Math.ceil(numResults / resPerPage);
   let pageButton;
@@ -53,12 +59,13 @@ const renderButtons = (page, numResults, resPerPage) => {
   elements.paginationButtons.insertAdjacentHTML("afterbegin", pageButton);
 };
 
+// ------------------> Render Recipe Results
 export const renderResult = (recipe, page = 1, resPerPage = 10) => {
   const start = (page - 1) * resPerPage;
   const end = page * resPerPage;
 
   recipe.slice(start, end).map((item) => {
-    const markup = `<a>
+    const markup = `<a href="${item.recipe_id}">
       <figure>
 <img src = "${
       item.image_url
