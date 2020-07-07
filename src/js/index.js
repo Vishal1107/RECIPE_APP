@@ -58,18 +58,17 @@ const controlRecipe = async () => {
   let id = window.location.hash.replace("#", "");
   if (id) {
     state.recipe = new Recipe(id);
-
     try {
       await state.recipe.getRecipe();
+      state.recipe.parseIngredients();
       state.recipe.calcTime();
       state.recipe.calcServings();
       console.log(state.recipe);
     } catch (error) {
-      alert("Error in Recipe Processing");
+      console.log(error);
     }
   }
 };
 
-["hashchange, load"].forEach((event) =>
-  window.addEventListener(event, controlRecipe)
-);
+window.addEventListener("hashchange", controlRecipe);
+window.addEventListener("load", controlRecipe);
