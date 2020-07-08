@@ -1,6 +1,7 @@
 import Search from "./models/Search";
 import { elements, renderLoader, clearLoader } from "./views/base";
 import * as searchView from "./views/searchView";
+import * as recipeView from "./views/recipeView";
 import Recipe from "./models/Recipe";
 
 /**  Global Object
@@ -57,13 +58,16 @@ elements.paginationButtons.addEventListener("click", (e) => {
 const controlRecipe = async () => {
   let id = window.location.hash.replace("#", "");
   if (id) {
+    recipeView.clearRecipeView();
+    renderLoader(elements.middleSection);
     state.recipe = new Recipe(id);
     try {
       await state.recipe.getRecipe();
       state.recipe.parseIngredients();
       state.recipe.calcTime();
       state.recipe.calcServings();
-      console.log(state.recipe);
+      clearLoader();
+      recipeView.renderRecipe(state.recipe);
     } catch (error) {
       console.log(error);
     }

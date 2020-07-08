@@ -3,6 +3,11 @@
   font-weight: bold;
 }
 
+.font-sans {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
 .container {
   background-color: aliceblue;
   min-height: 80vh;
@@ -37,7 +42,7 @@ a figure {
   height: 5.5rem;
   justify-content: center;
   margin: 5rem, auto;
-  margin-left: 70px;
+  margin: auto;
   text-align: center;
   animation: spin 2s linear infinite;
 }
@@ -66,4 +71,8 @@ a figure {
 
 a {
   text-decoration: none !important;
+}
+
+.recipeImage {
+  filter: opacity(70%);
 }

@@ -26,11 +26,11 @@ class Recipe {
     // Assuming 3 Ingredients requires 15 Minutes
     let numIngredients = this.ingredients.length;
     let periods = Math.ceil(numIngredients / 3);
-    this.time = periods * 15;
+    return (this.time = periods * 15);
   }
 
   calcServings() {
-    this.servings = 4;
+    return (this.servings = 4);
   }
 
   parseIngredients() {
@@ -88,7 +88,7 @@ class Recipe {
           count: eval(arrIng.slice(0, unitIndex).join("+"));
         }
         objIng = {
-          count: "",
+          count: count,
           unit: arrIng(unitIndex),
           ingredients: arrIng.slice(unitIndex + 1).join(),
         };

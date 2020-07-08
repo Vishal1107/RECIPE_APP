@@ -5,6 +5,8 @@ export const elements = {
   recipeResult: document.getElementById("recipeResults"),
   recipeResultLoader: document.getElementById("recipeResultList"),
   paginationButtons: document.getElementById("paginationButtons"),
+  renderRecipe: document.getElementById("renderRecipe"),
+  middleSection: document.getElementById("middleSection"),
 };
 
 // ----------------- Render Loader
