@@ -26,11 +26,11 @@ class Recipe {
     // Assuming 3 Ingredients requires 15 Minutes
     let numIngredients = this.ingredients.length;
     let periods = Math.ceil(numIngredients / 3);
-    return (this.time = periods * 15);
+    this.time = periods * 15;
   }
 
   calcServings() {
-    return (this.servings = 4);
+    this.servings = 4;
   }
 
   parseIngredients() {
@@ -56,6 +56,8 @@ class Recipe {
       "pound",
     ];
 
+    const units = [...unitShort, "kg", "g"];
+
     const newIngredients = this.ingredients.map((item) => {
       let ingredients = item.toLowerCase();
 
@@ -72,39 +74,41 @@ class Recipe {
       // Spilting Ingredients into Array
       const arrIng = ingredients.split(" ");
       // Checking Wether Unit Present in Ingredient or not
-      const unitIndex = arrIng.findIndex((item1) => {
-        unitShort.includes(item1);
-      });
+
+      const unitIndex = arrIng.findIndex((el2) => units.includes(el2));
 
       let objIng;
+
+      let count;
 
       if (unitIndex > -1) {
         // There is Unit
         const arrCount = arrIng.slice(0, unitIndex);
-        let count;
+
         if (arrCount.length === 1) {
-          count: eval(arrIng[0].replace("-", "+"));
+          count = eval(arrIng[0].replace("-", "+"));
         } else {
-          count: eval(arrIng.slice(0, unitIndex).join("+"));
+          count = eval(arrIng.slice(0, unitIndex).join("+"));
         }
+
         objIng = {
-          count: count,
-          unit: arrIng(unitIndex),
-          ingredients: arrIng.slice(unitIndex + 1).join(),
+          count,
+          unit: arrIng[unitIndex],
+          ingredientsValue: arrIng.slice(unitIndex + 1).join(" "),
         };
       } else if (parseInt(arrIng[0], 10)) {
         // If there is no unit but first is number
         objIng = {
           count: parseInt(arrIng[0], 10),
           unit: "",
-          ingredients: arrIng.slice(0).join(" "),
+          ingredientsValue: arrIng.slice(1).join(" "),
         };
       } else if (unitIndex === -1) {
         // There is no unit and no count
         objIng = {
           count: 1,
           unit: "",
-          ingredients,
+          ingredientsValue: ingredients,
         };
       }
 

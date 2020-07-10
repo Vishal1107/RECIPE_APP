@@ -1,9 +1,11 @@
 import { elements } from "./base";
 
-let createIngredients = (item) => {
+let createIngredients = (ingredient) => {
   return `<div>
-    <span><i class="fa fa-check-circle" aria-hidden="true"></i>
-    ${item.count} ${item.unit} ${item.ingredients} 
+    <span><i class="fa fa-check-circle text-danger" aria-hidden="true"></i>
+    <span>${ingredient.count}</span>
+    <span>${ingredient.unit}</span>
+    <span>${ingredient.ingredientsValue}</span>
     </div>`;
 };
 
@@ -33,10 +35,11 @@ export const renderRecipe = (recipe) => {
     </div>
     </section>
 
-    <section class="offset-md-1 col-md-10 mt-5">
-     ${recipe.ingredients.map((item) => createIngredients(item)).join("")}
-    </section>
-
+   <section class="mt-5">
+<ul>
+${recipe.ingredients.map((el) => createIngredients(el)).join(" ")}
+</ul>
+   </section>
 
 
     <section class="col-md-12 text-center mt-5">
