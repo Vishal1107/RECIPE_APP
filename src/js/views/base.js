@@ -7,6 +7,8 @@ export const elements = {
   paginationButtons: document.getElementById("paginationButtons"),
   renderRecipe: document.getElementById("renderRecipe"),
   middleSection: document.getElementById("middleSection"),
+  btnIncrease: document.getElementById("btnIncrease"),
+  btnDecrease: document.getElementById("btnDecrease"),
 };
 
 // ----------------- Render Loader

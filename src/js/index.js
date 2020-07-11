@@ -16,9 +16,10 @@ let state = {};
 const controlSearch = async () => {
   var query = searchView.getInput();
   if (query) {
-    state.search = new Search(query);
     searchView.clearInput();
     searchView.clearResult();
+    searchView.clearButtons();
+    state.search = new Search(query);
     renderLoader(elements.recipeResultLoader);
     try {
       await state.search.getResult();
@@ -60,6 +61,11 @@ const controlRecipe = async () => {
   if (id) {
     recipeView.clearRecipeView();
     renderLoader(elements.middleSection);
+
+    if (state.search) {
+      searchView.highlight(id);
+    }
+
     state.recipe = new Recipe(id);
     try {
       await state.recipe.getRecipe();
@@ -76,3 +82,13 @@ const controlRecipe = async () => {
 
 window.addEventListener("hashchange", controlRecipe);
 window.addEventListener("load", controlRecipe);
+
+elements.btnIncrease.addEventListener("click", (e) => {
+  state.recipe.updateServings("inc");
+  console.log(state.recipe);
+});
+
+elements.btnDecrease.addEventListener("click", (e) => {
+  state.recipe.updateServings("dec");
+  console.log(state.recipe);
+});

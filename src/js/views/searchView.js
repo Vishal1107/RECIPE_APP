@@ -13,6 +13,11 @@ export const clearResult = () => {
   elements.recipeResult.innerHTML = "";
 };
 
+//---------------------------> Highlight Selected Anchor Tag
+export const highlight = (id) => {
+  document.querySelector(`a[href="#${id}"]`).classList.add("text-dark");
+};
+
 // ------------------> Clear Pagination Buttons
 export const clearButtons = () => {
   elements.paginationButtons.innerHTML = "";
