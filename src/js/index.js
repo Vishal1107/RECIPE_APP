@@ -12,7 +12,8 @@ import Recipe from "./models/Recipe";
  */
 let state = {};
 
-// ------------------------> Search Controller
+//-------------------------->> SEARCH CONTROLLER
+
 const controlSearch = async () => {
   var query = searchView.getInput();
   if (query) {
@@ -37,13 +38,15 @@ const controlSearch = async () => {
   }
 };
 
-//-------------------------> Event After Search Submit
+//-------------------------->> EVENT AFTER SEARCH BUTTONS
+
 elements.searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   controlSearch();
 });
 
-//-------------------------> Event After Clicking Pagination Buttons
+//-------------------------->> EVENT AFTER CLICKING PAGINATIONS BUTTONS
+
 elements.paginationButtons.addEventListener("click", (e) => {
   const btn = e.target.closest(".btn");
   if (btn) {
@@ -54,7 +57,7 @@ elements.paginationButtons.addEventListener("click", (e) => {
   }
 });
 
-//-------------------------------> Recipe Controller
+//-------------------------->> RECIPE CONTROLLER
 
 const controlRecipe = async () => {
   let id = window.location.hash.replace("#", "");
@@ -80,15 +83,21 @@ const controlRecipe = async () => {
   }
 };
 
+//-------------------------->> HASH CHANGE ACTION
+
 window.addEventListener("hashchange", controlRecipe);
 window.addEventListener("load", controlRecipe);
 
-elements.btnIncrease.addEventListener("click", (e) => {
-  state.recipe.updateServings("inc");
-  console.log(state.recipe);
-});
+//-------------------------->> EVENT LISTENER TO SERVINGS BUTTONS
 
-elements.btnDecrease.addEventListener("click", (e) => {
-  state.recipe.updateServings("dec");
-  console.log(state.recipe);
+elements.renderRecipe.addEventListener("click", (e) => {
+  if (e.target.matches("#btnIncrease")) {
+    state.recipe.updateServings("inc");
+    recipeView.updateServingsIngredients(state.recipe);
+  } else if (e.target.matches("#btnDecrease")) {
+    if (state.recipe.servings > 1) {
+      state.recipe.updateServings("dec");
+      recipeView.updateServingsIngredients(state.recipe);
+    }
+  }
 });

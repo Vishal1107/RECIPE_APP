@@ -1,29 +1,35 @@
 import { elements } from "./base";
 
-// ---------------> To get Input from Search
+// -------------------------->> TO GET INPUT SEARCH FORM
+
 export const getInput = () => elements.searchInput.value;
 
-// ------------------> Clear Search Input
+//  -------------------------->> CLEAR SEARCH INPUT
+
 export const clearInput = () => {
   elements.searchInput.value = "";
 };
 
-// ------------------- Clear Search Result
+// -------------------------->> CLEAR SEARCH RESULT
+
 export const clearResult = () => {
   elements.recipeResult.innerHTML = "";
 };
 
-//---------------------------> Highlight Selected Anchor Tag
+// -------------------------->> HIGHLIGHT ANCHOR TAG
+
 export const highlight = (id) => {
   document.querySelector(`a[href="#${id}"]`).classList.add("text-dark");
 };
 
-// ------------------> Clear Pagination Buttons
+// -------------------------->> CLEAR PAGINATION BUTTONS
+
 export const clearButtons = () => {
   elements.paginationButtons.innerHTML = "";
 };
 
 // ------------------> To Limit the Word of title and publsher to 15 Character
+
 const limitRecipeResult = (title, limit = 15) => {
   const newTitle = [];
   if (title.length > limit) {
@@ -38,7 +44,8 @@ const limitRecipeResult = (title, limit = 15) => {
   return title;
 };
 
-// ------------------> To Create Pagination Buttons
+// -------------------------->> CREATE PAGINATION BUTTONS
+
 const createButton = (page, type) =>
   `<button class='${
     type === "prev" ? "btn btn-secondary mb-4" : "btn btn-primary mb-4"
@@ -46,7 +53,8 @@ const createButton = (page, type) =>
     type === "prev" ? "prevBtn" : "nextBtn"
   }'>Page ${type === "prev" ? page - 1 : page + 1}</button>`;
 
-// ------------------> Render Pagination Buttons
+// -------------------------->> RENDER PAGINATION BUTTONS
+
 const renderButtons = (page, numResults, resPerPage) => {
   const pages = Math.ceil(numResults / resPerPage);
   let pageButton;
@@ -64,7 +72,8 @@ const renderButtons = (page, numResults, resPerPage) => {
   elements.paginationButtons.insertAdjacentHTML("afterbegin", pageButton);
 };
 
-// ------------------> Render Recipe Results
+// -------------------------->> RENDER RECIPE RESULTS
+
 export const renderResult = (recipe, page = 1, resPerPage = 10) => {
   const start = (page - 1) * resPerPage;
   const end = page * resPerPage;

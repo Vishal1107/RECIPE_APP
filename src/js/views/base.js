@@ -1,4 +1,5 @@
-//-------------------------> HTML Elements
+// -------------------------->> HTML ELEMENTS
+
 export const elements = {
   searchForm: document.getElementById("searchForm"),
   searchInput: document.getElementById("search"),
@@ -7,18 +8,18 @@ export const elements = {
   paginationButtons: document.getElementById("paginationButtons"),
   renderRecipe: document.getElementById("renderRecipe"),
   middleSection: document.getElementById("middleSection"),
-  btnIncrease: document.getElementById("btnIncrease"),
-  btnDecrease: document.getElementById("btnDecrease"),
 };
 
-// ----------------- Render Loader
+// -------------------------->> RENDER LOADER
+
 export const renderLoader = (parent) => {
   const loader = `<div id="loader">
   </div>`;
   parent.insertAdjacentHTML("afterbegin", loader);
 };
 
-// ----------------- Clear Loader
+// -------------------------->> CLEAR LOADER
+
 export const clearLoader = () => {
   const loader = document.getElementById("loader");
 

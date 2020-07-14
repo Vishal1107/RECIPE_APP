@@ -1,6 +1,7 @@
 import { elements } from "./base";
 import { Fraction } from "fractional";
 
+//---------------------------------------->> FORMAT COUNT
 let formatCount = (count) => {
   if (count) {
     const [int, dec] = count
@@ -21,18 +22,24 @@ let formatCount = (count) => {
   return "?";
 };
 
+//---------------------------------------->> CREATE INGREDIENTS
+
 let createIngredients = (ingredient) => {
   return `<div>
     <span><i class="fa fa-check-circle" aria-hidden="true"></i>
-    <span>${formatCount(ingredient.count)}</span>
+    <span class="recipeIngCounts">${formatCount(ingredient.count)}</span>
     <span>${ingredient.unit}</span>
     <span>${ingredient.ingredientsValue}</span>
     </div>`;
 };
 
+//---------------------------------->> CLEAR RECIPE VIEW
+
 export let clearRecipeView = () => {
   elements.renderRecipe.innerHTML = "";
 };
+
+//-------------------------------->> RENDER RECIPE IN MIDDLE SECTION
 
 export const renderRecipe = (recipe) => {
   const markup = `
@@ -53,9 +60,11 @@ export const renderRecipe = (recipe) => {
     <div class="col-md-12 text-center">
      <span class="mx-5"><i class="fa fa-clock-o"></i>
      ${recipe.time} Minutes</span>
-    <span class="ml-5 mr-3">${recipe.servings} Servings</span>
+    <span class="ml-5 mr-3 peopleServings">${recipe.servings} Servings</span>
+
     <i class="fa fa-plus-circle" id= "btnIncrease"></i>
     <i class="fa fa-minus-circle" id= "btnDecrease"></i>
+
     <span class="float-right"><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></span>
     </div>
     </section>
@@ -71,7 +80,6 @@ export const renderRecipe = (recipe) => {
   <i class="fa fa-shopping-cart mx-2" aria-hidden="true"></i> ADD TO SHOPPING LIST
   </button>
   </section>
-
 
 
   <section class="col-md-12 text-center my-5">
@@ -90,4 +98,20 @@ export const renderRecipe = (recipe) => {
  </div>`;
 
   elements.renderRecipe.insertAdjacentHTML("afterbegin", markup);
+};
+
+//-------------------------------------->> UPDATE SERVINGS
+
+export const updateServingsIngredients = (recipe) => {
+  //Update Servings
+  document.querySelector(".peopleServings").textContent =
+    recipe.servings + " Servings";
+  //Update Count
+  const countElements = Array.from(
+    document.querySelectorAll(".recipeIngCounts")
+  );
+
+  countElements.forEach((el, i) => {
+    el.textContent = formatCount(recipe.ingredients[i].count);
+  });
 };
