@@ -7,9 +7,11 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Local CSS-->
     <link rel="stylesheet" href="css/index.css">
     <!-- SweetAlert.js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!--Font Awesome-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -39,6 +41,8 @@
 
         <div class="row">
 
+            <!-- ------------------------------- FIRST SECTION -->
+
             <section class="col-md-3 pt-5" id="recipeResultList">
                 <!-- Render Search Recipes -->
                 <div id="recipeResults">
@@ -49,14 +53,22 @@
 
             </section>
 
+            <!-- ------------------------------- SECOND SECTION -->
+
             <section class="col-md-6" id="middleSection">
                 <!-- Render Recipe in Details -->
                 <div id="renderRecipe">
                 </div>
             </section>
 
+            <!-- ------------------------------- THIRD SECTION -->
+
             <section class="col-md-3">
                 <h5 class="font-time text-uppercase mt-5 text-center">My Shopping List</h5>
+
+                <ul id="shoppingList">
+
+                </ul>
             </section>
 
         </div>

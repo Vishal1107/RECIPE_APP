@@ -8,6 +8,7 @@ export const elements = {
   paginationButtons: document.getElementById("paginationButtons"),
   renderRecipe: document.getElementById("renderRecipe"),
   middleSection: document.getElementById("middleSection"),
+  shopping: document.getElementById("shoppingList"),
 };
 
 // -------------------------->> RENDER LOADER
