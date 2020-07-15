@@ -1,5 +1,3 @@
-## Currently this Project is Under Development.
-
 ## Javascript App
 
 - This is Simple Recipe App in Which we can find Recipe list.
