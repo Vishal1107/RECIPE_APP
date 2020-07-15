@@ -76,7 +76,7 @@ export const renderRecipe = (recipe) => {
    </section>
 
   <section class="col-md-12 text-center mt-5">
-  <button class="btn btn-primary rounded-pill">
+  <button class="btn btn-primary rounded-pill" id= "wishlistButton">
   <i class="fa fa-shopping-cart mx-2" aria-hidden="true"></i> ADD TO SHOPPING LIST
   </button>
   </section>

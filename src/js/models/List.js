@@ -5,8 +5,8 @@ class List {
     this.items = [];
   }
 
-  addItem(count, unit, ingrediens) {
-    const item = { id: uniqid(), count, unit, ingrediens };
+  addItem(count, unit, ingredients) {
+    const item = { id: uniqid(), count, unit, ingredients };
     this.items.push(item);
     return item;
   }

@@ -3,6 +3,7 @@
 import { elements, renderLoader, clearLoader } from "./views/base";
 import * as searchView from "./views/searchView";
 import * as recipeView from "./views/recipeView";
+import * as listView from "./views/listView";
 
 //------------------------->> IMPORT MODELS
 
@@ -94,6 +95,36 @@ const controlRecipe = async () => {
 window.addEventListener("hashchange", controlRecipe);
 window.addEventListener("load", controlRecipe);
 
+// -------------------------->> HANDLE EVENT DELETE & UPDATE LIST ITEM EVENTS
+
+elements.shopping.addEventListener("click", (e) => {
+  const id = e.target.closest(".shoppingItem").dataset.itemid;
+  console.log(id);
+
+  if (e.target.matches(".fa-window-close")) {
+    // Delete from State
+    state.list.deleteItem(id);
+    // Delete from UI
+    listView.deleteItem(id);
+  } else if (e.target.matches("shoppingCountValue")) {
+    const val = parseFloat(e.target.value, 10);
+    state.list.updateCount(id, val);
+  }
+});
+
+//-------------------------->> LIST CONTROLLER
+
+const controlList = () => {
+  if (!state.list) {
+    state.list = new List();
+  }
+
+  state.recipe.ingredients.forEach((el) => {
+    const item = state.list.addItem(el.count, el.unit, el.ingredientsValue);
+    listView.renderList(item);
+  });
+};
+
 //-------------------------->> EVENT LISTENER TO SERVINGS BUTTONS
 
 elements.renderRecipe.addEventListener("click", (e) => {
@@ -105,5 +136,7 @@ elements.renderRecipe.addEventListener("click", (e) => {
       state.recipe.updateServings("dec");
       recipeView.updateServingsIngredients(state.recipe);
     }
+  } else if (e.target.matches("#wishlistButton, #wishlistButton *")) {
+    controlList();
   }
 });

@@ -76,3 +76,7 @@ a {
 .recipeImage {
   filter: opacity(70%);
 }
+
+.shoppingCount input {
+  width: 70px;
+}

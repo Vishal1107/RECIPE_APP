@@ -1,22 +1,15 @@
 import { elements } from "./base";
 
 export const renderList = (item) => {
-  const markup = `<li class="shoppingItem" data-itemid = ${item.id}>
+  const markup = `<span class="shoppingItem" data-itemid = ${item.id}>
  
- <span class="shoppingCount">
+<span class="shoppingCount">
 <input type = "number" value = "${item.count}" step = "${item.count}" id= "shoppingCountValue">
-<p>${item.unit}</p>
- </span>
-
- <span>
- <p>${item.ingredients}</p>
- </span>
-
-<span>
-<i class="fa fa-window-close" aria-hidden="true"></i>
+<span>${item.unit}</span>
+ <p>${item.ingredients}<span class="float-right"><i class="fa fa-window-close text-danger"></i></span></p>
 </span>
-
- </li>`;
+</span>
+ <br/>`;
 
   elements.shopping.insertAdjacentHTML("beforeend", markup);
 };
