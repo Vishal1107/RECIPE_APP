@@ -30,7 +30,7 @@ export const clearButtons = () => {
 
 // ------------------> To Limit the Word of title and publsher to 15 Character
 
-const limitRecipeResult = (title, limit = 15) => {
+export const limitRecipeResult = (title, limit = 15) => {
   const newTitle = [];
   if (title.length > limit) {
     title.split(" ").reduce((acc, cur) => {

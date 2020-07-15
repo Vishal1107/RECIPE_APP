@@ -9,6 +9,8 @@ export const elements = {
   renderRecipe: document.getElementById("renderRecipe"),
   middleSection: document.getElementById("middleSection"),
   shopping: document.getElementById("shoppingList"),
+  likesMenue: document.querySelector(".toggleLikesMenue"),
+  likesList: document.querySelector(".likesList"),
 };
 
 // -------------------------->> RENDER LOADER

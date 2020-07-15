@@ -4,6 +4,7 @@ import { elements, renderLoader, clearLoader } from "./views/base";
 import * as searchView from "./views/searchView";
 import * as recipeView from "./views/recipeView";
 import * as listView from "./views/listView";
+import * as likeView from "./views/likeView";
 
 //------------------------->> IMPORT MODELS
 
@@ -84,7 +85,7 @@ const controlRecipe = async () => {
       state.recipe.calcTime();
       state.recipe.calcServings();
       clearLoader();
-      recipeView.renderRecipe(state.recipe);
+      recipeView.renderRecipe(state.recipe, state.like.isLiked(id));
     } catch (error) {
       console.log(error);
     }
@@ -128,26 +129,44 @@ const controlList = () => {
 
 //-------------------------->> LIKE CONTROLLER
 
-const cotrolLike = () => {};
-if (!state.like) {
+const controlLike = () => {
+  if (!state.like) {
+    state.like = new Like();
+  }
+
+  const currentId = state.recipe.id;
+
+  if (!state.like.isLiked(currentId)) {
+    // User Not Like Recipe
+    const newLike = state.like.addLike(
+      currentId,
+      state.recipe.title,
+      state.recipe.author,
+      state.recipe.author,
+      state.recipe.img
+    );
+    likeView.toggleLikeBtn(true);
+    likeView.renderLike(newLike);
+
+    // User Liked Recipe
+  } else {
+    state.like.deleteLike(currentId);
+    likeView.toggleLikeBtn(false);
+    likeView.deleteLike(currentId);
+  }
+  likeView.toggleLikeMenue(state.like.getNumLikes());
+};
+
+window.addEventListener("load", () => {
   state.like = new Like();
-}
 
-const currentId = state.recipe.id;
+  state.like.readStorage();
 
-if (!state.like.isLiked(currentId)) {
-  // User Not Like Recipe
-  const newLike = state.like.addLike(
-    currentId,
-    state.recipe.title,
-    state.recipe.author,
-    state.recipe.author,
-    state.recipe.img
-  );
-  // User Liked Recipe
-} else {
-  state.like.deleteLike(currentId);
-}
+  likeView.toggleLikeMenue(state.likes.getNumLikes());
+
+  state.like.likes.forEach((like) => renderLike(like));
+});
+
 //-------------------------->> EVENT LISTENER TO SERVINGS BUTTONS
 
 elements.renderRecipe.addEventListener("click", (e) => {
@@ -161,7 +180,7 @@ elements.renderRecipe.addEventListener("click", (e) => {
     }
   } else if (e.target.matches("#wishlistButton, #wishlistButton *")) {
     controlList();
-  } else if (e.target.matches(".fa-heart-o")) {
+  } else if (e.target.matches(".likeBtn")) {
     controlLike();
   }
 });
