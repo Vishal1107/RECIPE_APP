@@ -9,7 +9,7 @@ export const renderList = (item) => {
  <p>${item.ingredients}<span class="float-right"><i class="fa fa-window-close text-danger"></i></span></p>
 </span>
 </span>
- <br/>`;
+<hr/>`;
 
   elements.shopping.insertAdjacentHTML("beforeend", markup);
 };

@@ -10,6 +10,7 @@ import * as listView from "./views/listView";
 import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import List from "./models/List";
+import Like from "./models/Like";
 
 /**  Global Object
  * - Search Object
@@ -125,6 +126,28 @@ const controlList = () => {
   });
 };
 
+//-------------------------->> LIKE CONTROLLER
+
+const cotrolLike = () => {};
+if (!state.like) {
+  state.like = new Like();
+}
+
+const currentId = state.recipe.id;
+
+if (!state.like.isLiked(currentId)) {
+  // User Not Like Recipe
+  const newLike = state.like.addLike(
+    currentId,
+    state.recipe.title,
+    state.recipe.author,
+    state.recipe.author,
+    state.recipe.img
+  );
+  // User Liked Recipe
+} else {
+  state.like.deleteLike(currentId);
+}
 //-------------------------->> EVENT LISTENER TO SERVINGS BUTTONS
 
 elements.renderRecipe.addEventListener("click", (e) => {
@@ -138,5 +161,7 @@ elements.renderRecipe.addEventListener("click", (e) => {
     }
   } else if (e.target.matches("#wishlistButton, #wishlistButton *")) {
     controlList();
+  } else if (e.target.matches(".fa-heart-o")) {
+    controlLike();
   }
 });
