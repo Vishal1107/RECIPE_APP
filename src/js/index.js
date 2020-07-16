@@ -87,7 +87,7 @@ const controlRecipe = async () => {
       clearLoader();
       recipeView.renderRecipe(state.recipe, state.like.isLiked(id));
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 };
@@ -101,7 +101,6 @@ window.addEventListener("load", controlRecipe);
 
 elements.shopping.addEventListener("click", (e) => {
   const id = e.target.closest(".shoppingItem").dataset.itemid;
-  console.log(id);
 
   if (e.target.matches(".fa-window-close")) {
     // Delete from State

@@ -1,5 +1,4 @@
 import { elements } from "./base";
-import { limitRecipeResult } from "./searchView";
 
 // ----------------------------->> CHECKING RECIPE LIKED OR NOT
 
