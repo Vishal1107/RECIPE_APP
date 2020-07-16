@@ -6,6 +6,8 @@ class Like {
   addLike(id, title, author, img) {
     const like = { id, title, author, img };
     this.likes.push(like);
+
+    // Persist Data in Local Storage
     this.persistData();
     return like;
   }
@@ -13,6 +15,8 @@ class Like {
   deleteLike(id) {
     const index = this.likes.findIndex((el) => el.id === id);
     this.likes.splice(index, 1);
+
+    // Persist Data in Local Storage
     this.persistData();
   }
 

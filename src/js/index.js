@@ -142,9 +142,9 @@ const controlLike = () => {
       currentId,
       state.recipe.title,
       state.recipe.author,
-      state.recipe.author,
       state.recipe.img
     );
+
     likeView.toggleLikeBtn(true);
     likeView.renderLike(newLike);
 
@@ -157,14 +157,14 @@ const controlLike = () => {
   likeView.toggleLikeMenue(state.like.getNumLikes());
 };
 
+// ------------------------------>> RESTORE LIKE ON ONLOAD
+
 window.addEventListener("load", () => {
   state.like = new Like();
-
   state.like.readStorage();
+  likeView.toggleLikeMenue(state.like.getNumLikes());
 
-  likeView.toggleLikeMenue(state.likes.getNumLikes());
-
-  state.like.likes.forEach((like) => renderLike(like));
+  state.like.likes.forEach((like) => likeView.renderLike(like));
 });
 
 //-------------------------->> EVENT LISTENER TO SERVINGS BUTTONS
