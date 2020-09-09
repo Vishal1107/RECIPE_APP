@@ -1,6 +1,6 @@
 # Contributing to Recipe-App
 
-## Please feel free to contibute in this project.
+## Please feel free to contribute in this repository as well as other repositories of this GitHub Account.
 
 We want to make contributing to this project as easy as possible, whether it's:
 
@@ -16,7 +16,7 @@ We use github to host code, to track issues and feature requests, as well as acc
 
 ## Report bugs using Github's issues
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/Vishal1107/RECIPE_APP/issues); it's that easy!
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/vrbait1107/RECIPE_APP/issues); it's that easy!
 
 ## Write bug reports with detail, background, and sample code
 
